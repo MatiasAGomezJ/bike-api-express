@@ -4,6 +4,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+var bikesRouter = require('./routes/BikeRouter');
+
 var app = express();
 
 //Set up mongoose connection
@@ -22,6 +24,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('/api/bike', bikesRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
