@@ -49,6 +49,24 @@ async function createBike(req, res) {
     }
 }
 
+async function updateBike(req, res) {
+    const bikeId = req.params.id;
+
+    const body = req.body;
+
+    try {
+        const updatedBike = await Bike.findByIdAndUpdate(bikeId, body);
+
+        if (!updatedBike) {
+            res.status(400).send({ msg: "No se ha actualizado la bicicleta" });
+        } else {
+            res.status(200).send({ bike: updatedBike });
+        }
+    } catch (error) {
+        res.status(500).send(error);
+    }
+}
+
 function mapIntoBike(body) {
     const bike = new Bike();
 
@@ -63,4 +81,5 @@ module.exports = {
     listBikes,
     getBikeById,
     createBike,
+    updateBike,
 };
