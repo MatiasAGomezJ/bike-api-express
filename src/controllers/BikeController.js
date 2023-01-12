@@ -67,6 +67,22 @@ async function updateBike(req, res) {
     }
 }
 
+async function deleteBike(req, res) {
+    const bikeId = req.params.id;
+
+    try {
+        const deletedBike = await Bike.findByIdAndDelete(bikeId);
+
+        if (!deletedBike) {
+            res.status(400).send({ msg: "No se ha borrado la bicicleta" });
+        } else {
+            res.status(200).send({ bike: deletedBike });
+        }
+    } catch (error) {
+        res.status(500).send(error);
+    }
+}
+
 function mapIntoBike(body) {
     const bike = new Bike();
 
@@ -82,4 +98,5 @@ module.exports = {
     getBikeById,
     createBike,
     updateBike,
+    deleteBike,
 };
