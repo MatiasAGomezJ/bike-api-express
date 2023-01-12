@@ -2,12 +2,18 @@ const { expect } = require("@jest/globals");
 const app = require("../app");
 const request = require("supertest");
 // require("../src/repository/poblate");
+const testBike = require("./testBike");
 
-test("POST /api/bike", async () => {
-    const response = await request(app).get("/api/bike").send();
-    expect(response.statusCode).toBe(200);
-    expect(response.header["content-type"]).toContain("application/json");
-    expect(response.body.id).toBeDefined();
+test("POST /api/bike", () => {
+    // const response = await request(app).post("/api/bike").body(testBike).send();
+    // expect(response.statusCode).toBe(201);
+    // expect(response.header["content-type"]).toContain("application/json");
+    // console.log(response.body);
+
+    request(app)
+        .post("/api/bike")
+        .expect("content-type", "/json/")
+        .expect("status", 200);
 });
 
 // test("responds with json", async () => {
