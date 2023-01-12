@@ -2,7 +2,7 @@ const Bike = require("../../models/BikeModel");
 
 module.exports = {
     getBikes: async (filter) => {
-        return await Bike.find();
+        return await Bike.find().where(filter);
     },
     getBikeById: async (bikeId) => {
         return await Bike.findById(bikeId);
@@ -15,6 +15,5 @@ module.exports = {
     },
     deleteBike: async (bikeId) => {
         await Bike.findByIdAndDelete(bikeId);
-    }
-}
-
+    },
+};
