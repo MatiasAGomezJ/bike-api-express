@@ -39,7 +39,7 @@ async function createBike(req, res) {
     bike = mapIntoBike(body);
 
     try {
-        const savedBike = await bike.save();
+        const savedBike = await BikeService.createBike(bike);
 
         if (!savedBike) {
             res.status(400).send({ msg: "No se ha guardado la bicicleta" });

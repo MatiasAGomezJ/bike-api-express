@@ -6,6 +6,9 @@ module.exports = {
     },
     getBikeById: async (bikeId) => {
         return await Bike.findById(bikeId);
+    },
+    createBike: async (bike) => {
+        return await bike.save();
     }
 }
 

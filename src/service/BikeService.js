@@ -6,5 +6,8 @@ module.exports = {
     },
     getBikeById: async (bikeId) => {
         return await DB.getBikeById(bikeId);
+    },
+    createBike: async (bike) => {
+        return await DB.createBike(bike);
     }
 }
