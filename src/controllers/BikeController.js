@@ -34,6 +34,16 @@ async function createBike(req, res) {
     }
 }
 
+function mapIntoBike(body) {
+    const bike = new Bike();
+
+    for (const item in body) {
+        bike[item] = body[item];
+    }
+
+    return bike;
+}
+
 module.exports = {
     listBikes,
     createBike,
