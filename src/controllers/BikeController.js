@@ -1,10 +1,12 @@
 const Bike = require("../models/BikeModel");
+const BikeService = require("../service/BikeService");
 
 async function listBikes(req, res) {
     const filter = req.query;
 
     try {
-        const bikes = await Bike.find().where(filter);
+        
+        const bikes = await BikeService.listBikes(filter);
 
         if (!bikes) {
             res.status(400).send({ msg: "Error al obtener las bicicletas" });
