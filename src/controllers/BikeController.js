@@ -1,4 +1,3 @@
-const Bike = require("../models/BikeModel");
 const BikeService = require("../service/BikeService");
 
 async function listBikes(req, res) {
