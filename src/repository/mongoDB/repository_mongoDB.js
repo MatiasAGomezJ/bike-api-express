@@ -1,7 +1,7 @@
 const Bike = require("../../models/BikeModel");
 
 module.exports = {
-    findAll: async (filter) => {
+    getBikes: async (filter) => {
         return await Bike.find();
     }
 }
