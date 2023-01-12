@@ -16,6 +16,25 @@ async function listBikes(req, res) {
     }
 }
 
+async function createBike(req, res) {
+    const body = req.body;
+
+    bike = mapIntoBike(body);
+
+    try {
+        const savedBike = await bike.save();
+
+        if (!savedBike) {
+            res.status(400).send({ msg: "No se ha guardado la bicicleta" });
+        } else {
+            res.status(201).send({ bike: savedBike });
+        }
+    } catch (error) {
+        res.status(500).send(error);
+    }
+}
+
 module.exports = {
     listBikes,
+    createBike,
 };
