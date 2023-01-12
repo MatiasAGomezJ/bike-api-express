@@ -5,7 +5,6 @@ async function listBikes(req, res) {
     const filter = req.query;
 
     try {
-        
         const bikes = await BikeService.listBikes(filter);
 
         if (!bikes) {
@@ -57,7 +56,7 @@ async function updateBike(req, res) {
     const body = req.body;
 
     try {
-        const updatedBike = await Bike.findByIdAndUpdate(bikeId, body);
+        const updatedBike = await BikeService.updateBike(bikeId, body);
 
         if (!updatedBike) {
             res.status(400).send({ msg: "No se ha actualizado la bicicleta" });
@@ -73,7 +72,7 @@ async function deleteBike(req, res) {
     const bikeId = req.params.id;
 
     try {
-        const deletedBike = await Bike.findByIdAndDelete(bikeId);
+        const deletedBike = await BikeService.deleteBike(bikeId);
 
         if (!deletedBike) {
             res.status(400).send({ msg: "No se ha borrado la bicicleta" });

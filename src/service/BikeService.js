@@ -9,5 +9,11 @@ module.exports = {
     },
     createBike: async (bike) => {
         return await DB.createBike(bike);
+    },
+    updateBike: async (bikeId, body) => {
+        return await DB.updateBike(bikeId, body)
+    },
+    deleteBike: async (bikeId) => {
+        return await DB.deleteBike(bikeId);
     }
 }
