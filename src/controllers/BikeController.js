@@ -16,6 +16,21 @@ async function listBikes(req, res) {
     }
 }
 
+async function getBikeById(req, res) {
+    const bikeId = req.params.id;
+    try {
+        const bike = await Bike.findById(bikeId);
+
+        if (!bike) {
+            res.status(400).send({ msg: "Error al obtener la bicicleta" });
+        } else {
+            res.status(200).send(bike);
+        }
+    } catch (error) {
+        res.status(500).send(error);
+    }
+}
+
 async function createBike(req, res) {
     const body = req.body;
 
@@ -46,5 +61,6 @@ function mapIntoBike(body) {
 
 module.exports = {
     listBikes,
+    getBikeById,
     createBike,
 };
