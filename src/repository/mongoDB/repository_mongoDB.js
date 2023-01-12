@@ -14,6 +14,6 @@ module.exports = {
         return await Bike.findByIdAndUpdate(bikeId, body);
     },
     deleteBike: async (bikeId) => {
-        await Bike.findByIdAndDelete(bikeId);
+        return await Bike.findByIdAndDelete(bikeId);
     },
 };
