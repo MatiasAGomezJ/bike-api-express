@@ -11,7 +11,7 @@ function mapIntoBike(body) {
 }
 
 module.exports = {
-    getBikes: async (filter) => {
+    listBikes: async (filter) => {
         return await Bike.find().where(filter);
     },
     getBikeById: async (bikeId) => {
