@@ -6,11 +6,7 @@ async function listBikes(req, res) {
     try {
         const bikes = await BikeService.listBikes(filter);
 
-        if (!bikes) {
-            res.status(400).send({ msg: "Error al obtener las bicicletas" });
-        } else {
-            res.status(200).send(bikes);
-        }
+        bikes ? res.status(200).send(bikes) : res.status(400).send({ msg: "Error al obtener las bicicletas" });
     } catch (error) {
         res.status(500).send(error);
     }
@@ -21,11 +17,7 @@ async function getBikeById(req, res) {
     try {
         const bike = await BikeService.getBikeById(bikeId);
 
-        if (!bike) {
-            res.status(400).send({ msg: "Error al obtener la bicicleta" });
-        } else {
-            res.status(200).send(bike);
-        }
+        bike ? res.status(200).send(bike) : res.status(400).send({ msg: "Error al obtener la bicicleta" });
     } catch (error) {
         res.status(500).send(error);
     }
@@ -34,16 +26,10 @@ async function getBikeById(req, res) {
 async function createBike(req, res) {
     const body = req.body;
 
-    bike = mapIntoBike(body);
-
     try {
-        const savedBike = await BikeService.createBike(bike);
+        const savedBike = await BikeService.createBike(body);
 
-        if (!savedBike) {
-            res.status(400).send({ msg: "No se ha guardado la bicicleta" });
-        } else {
-            res.status(201).send({ bike: savedBike });
-        }
+        savedBike ? res.status(201).send({ bike: savedBike }) : res.status(400).send({ msg: "No se ha guardado la bicicleta" });
     } catch (error) {
         res.status(500).send(error);
     }
@@ -51,17 +37,12 @@ async function createBike(req, res) {
 
 async function updateBike(req, res) {
     const bikeId = req.params.id;
-
     const body = req.body;
 
     try {
         const updatedBike = await BikeService.updateBike(bikeId, body);
 
-        if (!updatedBike) {
-            res.status(400).send({ msg: "No se ha actualizado la bicicleta" });
-        } else {
-            res.status(200).send({ bike: updatedBike });
-        }
+        updatedBike ? res.status(200).send({ bike: updatedBike }) : res.status(400).send({ msg: "No se ha actualizado la bicicleta" });
     } catch (error) {
         res.status(500).send(error);
     }
@@ -73,24 +54,10 @@ async function deleteBike(req, res) {
     try {
         const deletedBike = await BikeService.deleteBike(bikeId);
 
-        if (!deletedBike) {
-            res.status(400).send({ msg: "No se ha borrado la bicicleta" });
-        } else {
-            res.status(200).send({ bike: deletedBike });
-        }
+        deletedBike ? res.status(200).send({ bike: deletedBike }) : res.status(400).send({ msg: "No se ha borrado la bicicleta" });
     } catch (error) {
         res.status(500).send(error);
     }
-}
-
-function mapIntoBike(body) {
-    const bike = new Bike();
-
-    for (const item in body) {
-        bike[item] = body[item];
-    }
-
-    return bike;
 }
 
 module.exports = {

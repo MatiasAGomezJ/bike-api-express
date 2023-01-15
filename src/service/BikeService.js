@@ -7,8 +7,8 @@ module.exports = {
     getBikeById: async (bikeId) => {
         return await DB.getBikeById(bikeId);
     },
-    createBike: async (bike) => {
-        return await DB.createBike(bike);
+    createBike: async (body) => {
+        return await DB.createBike(body);
     },
     updateBike: async (bikeId, body) => {
         return await DB.updateBike(bikeId, body)
