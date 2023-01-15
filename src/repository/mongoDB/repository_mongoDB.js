@@ -1,13 +1,13 @@
 const Bike = require("../../models/BikeModel");
 
-function mapIntoBike(body) {
-    const bike = new Bike();
+function mapInto(model, body) {
+    const modelItem = new model();
 
     for (const item in body) {
-        bike[item] = body[item];
+        modelItem[item] = body[item];
     }
 
-    return bike;
+    return modelItem;
 }
 
 module.exports = {
@@ -18,7 +18,7 @@ module.exports = {
         return await Bike.findById(bikeId);
     },
     createBike: async (body) => {
-        bike = mapIntoBike(body);
+        bike = mapInto(Bike, body);
         return await bike.save();
     },
     updateBike: async (bikeId, body) => {
