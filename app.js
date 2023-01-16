@@ -6,6 +6,7 @@ var logger = require("morgan");
 
 var BikesRouter = require("./src/routes/BikeRouter");
 var StoreRouter = require("./src/routes/StoreRouter");
+var StockRouter = require("./src/routes/StockRouter");
 
 var app = express();
 
@@ -23,6 +24,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/api/bike", BikesRouter);
 app.use("/api/store", StoreRouter);
+app.use("/api/stock", StockRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
