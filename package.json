@@ -7,7 +7,7 @@
         "devstart": "nodemon ./bin/www",
         "serverstart": "DB=mongoDB NODE_ENV=dev DEBUG=express-locallibrary-tutorial:* npm run devstart",
         "test": "DB=mongoDB NODE_ENV=test jest",
-        "poblate": "DB=mongoDB NODE_ENV=test node ./src/repository/poblate"
+        "populate": "DB=mongoDB NODE_ENV=test node ./src/repository/populate"
     },
     "dependencies": {
         "cookie-parser": "~1.4.4",

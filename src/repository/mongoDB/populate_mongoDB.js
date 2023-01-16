@@ -1,4 +1,4 @@
-const db = require("../../repository/initDB");
+const db = require("../initDB");
 db.connect();
 
 const Bike = require("../../models/BikeModel");
