@@ -1,5 +1,3 @@
-const Bike = require("../../models/BikeModel");
-
 function mapInto(model, body) {
     const modelItem = new model();
 
@@ -11,20 +9,20 @@ function mapInto(model, body) {
 }
 
 module.exports = {
-    listBikes: async (filter) => {
-        return await Bike.find().where(filter);
+    list: async (model, filter) => {
+        return await model.find().where(filter);
     },
-    getBikeById: async (bikeId) => {
-        return await Bike.findById(bikeId);
+    getById: async (modelId) => {
+        return await model.findById(modelId);
     },
-    createBike: async (body) => {
-        bike = mapInto(Bike, body);
-        return await bike.save();
+    create: async (model, body) => {
+        modelItem = mapInto(model, body);
+        return await modelItem.save();
     },
-    updateBike: async (bikeId, body) => {
-        return await Bike.findByIdAndUpdate(bikeId, body);
+    update: async (model, modelId, body) => {
+        return await model.findByIdAndUpdate(modelId, body);
     },
-    deleteBike: async (bikeId) => {
-        return await Bike.findByIdAndDelete(bikeId);
+    delete: async (model, modelId) => {
+        return await model.findByIdAndDelete(modelId);
     },
 };
