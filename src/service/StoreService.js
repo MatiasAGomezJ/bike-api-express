@@ -5,16 +5,16 @@ module.exports = {
     listStore: async (filter) => {
         return await DB.list(Store, filter);
     },
-    getStoreById: async (bikeId) => {
-        return await DB.storeById(Store, bikeId);
+    getStoreById: async (storeId) => {
+        return await DB.storeById(Store, storeId);
     },
     createStore: async (body) => {
         return await DB.create(Store, body);
     },
-    updateStore: async (bikeId, body) => {
-        return await DB.update(Store, bikeId, body);
+    updateStore: async (storeId, body) => {
+        return await DB.update(Store, storeId, body);
     },
-    deleteStore: async (bikeId) => {
-        return await DB.delete(Store, bikeId);
+    deleteStore: async (storeId) => {
+        return await DB.delete(Store, storeId);
     },
 };
