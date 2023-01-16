@@ -2,7 +2,7 @@ const DB = require("../repository/repository");
 const Store = require("../models/StoreModel");
 
 module.exports = {
-    listStore: async (filter) => {
+    listStores: async (filter) => {
         return await DB.list(Store, filter);
     },
     getStoreById: async (storeId) => {
