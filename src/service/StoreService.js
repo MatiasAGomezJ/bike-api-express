@@ -6,7 +6,7 @@ module.exports = {
         return await DB.list(Store, filter);
     },
     getStoreById: async (storeId) => {
-        return await DB.storeById(Store, storeId);
+        return await DB.getById(Store, storeId);
     },
     createStore: async (body) => {
         return await DB.create(Store, body);
