@@ -4,7 +4,8 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 
-var bikesRouter = require("./src/routes/BikeRouter");
+var BikesRouter = require("./src/routes/BikeRouter");
+var StoreRouter = require("./src/routes/StoreRouter");
 
 var app = express();
 
@@ -20,8 +21,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/api/bike", bikesRouter);
-console.log(process.env.NODE_ENV);
+app.use("/api/bike", BikesRouter);
+app.use("/api/store", StoreRouter);
+
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
     next(createError(404));
