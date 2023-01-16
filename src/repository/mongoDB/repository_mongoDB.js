@@ -12,7 +12,7 @@ module.exports = {
     list: async (model, filter) => {
         return await model.find().where(filter);
     },
-    getById: async (modelId) => {
+    getById: async (model, modelId) => {
         return await model.findById(modelId);
     },
     create: async (model, body) => {
