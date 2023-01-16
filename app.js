@@ -8,7 +8,8 @@ var StockRouter = require("./src/routes/StockRouter");
 
 var app = express();
 
-require("./src/repository/initDB");
+var db = require("./src/repository/initDB");
+db.connect();
 
 app.use(logger("dev"));
 app.use(express.json());
