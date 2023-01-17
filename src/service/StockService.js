@@ -17,4 +17,7 @@ module.exports = {
     deleteStockItem: async (stockId) => {
         return await DB.delete(Stock, stockId);
     },
+    deleteStockItems: async (filter) => {
+        return await DB.deleteMany(Stock, filter);
+    }
 };
