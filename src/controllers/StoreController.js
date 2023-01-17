@@ -1,3 +1,4 @@
+const StockService = require("../service/StockService");
 const StoreService = require("../service/StoreService");
 
 module.exports = {
@@ -25,6 +26,7 @@ module.exports = {
     deleteStore: async (req, res) => {
         const bikeId = req.params.id;
         const deletedStore = await StoreService.deleteStore(bikeId);
+        const deletedStockItems = await StockService.deleteStockItems({ storeId: bikeId });
         deletedStore ? res.status(200).send({ store: deletedStore }) : res.status(400).send({ msg: "No se ha borrado la bicicleta" });
     },
 };
