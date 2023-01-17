@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 
 ids = {
-    bikeId1: new mongoose.Types.ObjectId(),
-    bikeId2: new mongoose.Types.ObjectId(),
-    storeId1: new mongoose.Types.ObjectId(),
-    storeId2: new mongoose.Types.ObjectId(),
+    bikeId1: mongoose.Types.ObjectId("63c5ec25fcdeaf6e5dde9918"),
+    bikeId2: mongoose.Types.ObjectId("63c5ec25fcdeaf6e5dde9919"),
+    storeId1: mongoose.Types.ObjectId("63c5ec25fcdeaf6e5dde991a"),
+    storeId2: mongoose.Types.ObjectId("63c5ec25fcdeaf6e5dde991b"),
 };
 
 module.exports = {

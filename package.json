@@ -6,6 +6,8 @@
         "start": "node ./bin/www",
         "devstart": "nodemon ./bin/www",
         "serverstart": "DB=mongoDB NODE_ENV=dev DEBUG=express-locallibrary-tutorial:* npm run devstart",
+        "testserverstart": "DB=mongoDB NODE_ENV=test DEBUG=express-locallibrary-tutorial:* npm run devstart",
+        "pretest": "DB=mongoDB NODE_ENV=test npm run populate",
         "test": "DB=mongoDB NODE_ENV=test jest",
         "populate": "DB=mongoDB NODE_ENV=test node ./src/repository/populate"
     },
