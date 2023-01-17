@@ -59,6 +59,23 @@ describe("POST tests", () => {
         expect(response3.body).toMatchObject(expect.arrayContaining([expect.objectContaining(testBikes[0])]));
         expect(response3.type).toMatch("json");
     });
+
+    // test("POST bike with invalid data", async () => {
+    //     const response = await request(app).get("/api/bike");
+    //     expect(response.statusCode).toBe(200);
+    //     expect(response.type).toMatch("json");
+    //     const itemCountBefore = response.body.length;
+
+    //     const response2 = await request(app).post("/api/bike").send({ name: "Bike 1", almería: "A"});
+    //     expect(response2.statusCode).toBe(400);
+    //     expect(response2.body).toMatchObject({ msg: "No se ha guardado la bicicleta" });
+    //     expect(response2.type).toMatch("json");
+
+    //     const response3 = await request(app).get("/api/bike");
+    //     expect(response3.statusCode).toBe(200);
+    //     expect(response3.body.length).toBe(itemCountBefore);
+    //     expect(response3.type).toMatch("json");
+    // });
 });
 
 describe("PUT tests", () => {
