@@ -25,4 +25,7 @@ module.exports = {
     delete: async (model, modelId) => {
         return await model.findByIdAndDelete(modelId);
     },
+    deleteMany: async (model, filter) => {
+        return await model.deleteMany(filter);
+    },
 };
