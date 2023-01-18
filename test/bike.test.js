@@ -2,7 +2,7 @@ const app = require("../app");
 const request = require("supertest");
 const { expect } = require("@jest/globals");
 const db = require("../src/repository/initDB");
-const testItems = require("../src/repository/mongoDB/testItems");
+const items = require("../src/repository/mongoDB/items");
 const testBikes = require("./testBike");
 
 afterAll(() => {
@@ -21,15 +21,15 @@ describe("GET tests", () => {
         const response = await request(app).get("/api/bike?category=B");
         expect(response.statusCode).toBe(200);
         expect(response.body.length).toBe(1);
-        expect(response.body[0]).toMatchObject(testItems.bikes[1]);
+        expect(response.body[0]).toMatchObject(items.bikes[1]);
         expect(response.type).toMatch("json");
     });
 
     test("GET bike by id", async () => {
-        const bikeId = testItems.bikes[0]._id.valueOf();
+        const bikeId = items.bikes[0]._id.valueOf();
         const response = await request(app).get(`/api/bike/${bikeId}`);
         expect(response.statusCode).toBe(200);
-        expect(response.body).toMatchObject(testItems.bikes[0]);
+        expect(response.body).toMatchObject(items.bikes[0]);
         expect(response.type).toMatch("json");
     });
 
@@ -85,7 +85,7 @@ describe("PUT tests", () => {
         expect(response.type).toMatch("json");
         const itemCountBefore = response.body.length;
 
-        const bikeId = testItems.bikes[0]._id.valueOf();
+        const bikeId = items.bikes[0]._id.valueOf();
         const response2 = await request(app).put(`/api/bike/${bikeId}`).send(testBikes[1]);
         expect(response2.statusCode).toBe(200);
         expect(response2.type).toMatch("json");
@@ -112,7 +112,7 @@ describe("DELETE tests", () => {
         expect(response.type).toMatch("json");
         const itemCountBefore = response.body.length;
 
-        const bikeId = testItems.bikes[0]._id.valueOf();
+        const bikeId = items.bikes[0]._id.valueOf();
         const response2 = await request(app).delete(`/api/bike/${bikeId}`);
         expect(response2.statusCode).toBe(200);
         expect(response2.body.bike._id).toBe(bikeId);
