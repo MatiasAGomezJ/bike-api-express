@@ -2,9 +2,16 @@ const app = require("../app");
 const request = require("supertest");
 const { expect } = require("@jest/globals");
 const db = require("../src/repository/initDB");
+const Polutator = require("../src/repository/populate");
 const items = require("../src/repository/mongoDB/items");
 const testBikes = require("./testBike");
 
+
+beforeAll(async () => {
+    db.connect();
+    await Polutator.populate();
+}, 10000);
+    
 afterAll(() => {
     db.disconnect();
 });

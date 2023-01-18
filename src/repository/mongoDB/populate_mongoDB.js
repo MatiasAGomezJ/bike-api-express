@@ -1,12 +1,9 @@
-const db = require("../initDB");
-db.connect();
-
 const Bike = require("../../models/BikeModel");
 const Store = require("../../models/StoreModel");
 const Stock = require("../../models/StockModel");
 const items = require("./items");
 
-(async () => {
+async function populate() {
     await Bike.collection.drop();
     await Bike.insertMany(items.bikes);
     console.log("Bikes pupolated");
@@ -16,5 +13,8 @@ const items = require("./items");
     await Stock.collection.drop();
     await Stock.insertMany(items.stock);
     console.log("Stock pupolated");
-    db.disconnect();
-})();
+}
+
+module.exports = {
+    populate: populate,
+};
