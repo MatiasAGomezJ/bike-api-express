@@ -4,16 +4,15 @@ const { expect } = require("@jest/globals");
 const db = require("../src/repository/initDB");
 const Polutator = require("../src/repository/populate");
 const items = require("../src/repository/mongoDB/items");
-const testBikes = require("./testBike");
-
+const testBikes = require("./testBikes");
 
 beforeAll(async () => {
-    db.connect();
+    await db.connect();
     await Polutator.populate();
 }, 10000);
     
-afterAll(() => {
-    db.disconnect();
+afterAll(async () => {
+    await db.disconnect();
 });
 
 describe("GET tests", () => {
