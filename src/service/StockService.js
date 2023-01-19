@@ -4,8 +4,8 @@ const Bike = require("../models/BikeModel");
 const Store = require("../models/StoreModel");
 
 async function myPopulate(items) {
-    if (!Array.isArray(items))
-        items = [items];    
+    if (items === null) return null;
+    if (!Array.isArray(items)) items = [items];    
     
     for (let i = 0; i < items.length; i++) {
         const item = items[i];
