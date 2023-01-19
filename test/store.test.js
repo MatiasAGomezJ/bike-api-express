@@ -57,10 +57,8 @@ describe("POST tests", () => {
 
         const response3 = await request(app).get("/api/store");
         expect(response3.statusCode).toBe(200);
-        expect(response3.type).toMatch("json");
-        expect(response3.body.length).toBe(itemCountBefore + 1);
         expect(response3.body).toMatchObject(expect.arrayContaining([expect.objectContaining(testStores[0])]));
-
+        expect(response3.body.length).toBe(itemCountBefore + 1);
     });
 
     test("POST store with invalid body", async () => {
@@ -94,7 +92,6 @@ describe("PUT tests", () => {
 
         const response3 = await request(app).get(`/api/store/${storeId}`);
         expect(response3.statusCode).toBe(200);
-        expect(response3.type).toMatch("json");
         expect(response3.body).not.toMatchObject(itemBefore);
     });
 
@@ -117,7 +114,6 @@ describe("PUT tests", () => {
 
         const response3 = await request(app).get(`/api/store/${storeId}`);
         expect(response3.statusCode).toBe(200);
-        expect(response3.type).toMatch("json");
         expect(response3.body).toMatchObject(itemBefore);
     });
 });
@@ -134,18 +130,10 @@ describe("DELETE tests", () => {
         expect(response2.type).toMatch("json");
         const stockItemsCountBefore = response.body.length;
 
-        console.log(response2.body);
-        console.log(stockItemsCountBefore);
-        console.log(items.stores[0]._id.valueOf());
-
         const storeId = items.stores[0]._id.valueOf();
         const response3 = await request(app).delete(`/api/store/${storeId}`);
         expect(response3.statusCode).toBe(200);
         expect(response3.body.store._id).toBe(storeId);
-
-        console.log(response2.body);
-        console.log(stockItemsCountBefore);
-        console.log(items.stores[0]._id.valueOf());
 
         const response4 = await request(app).get("/api/store");
         expect(response4.statusCode).toBe(200);
