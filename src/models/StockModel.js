@@ -8,4 +8,5 @@ const StockSchema = new Schema({
     rentable: { type: Boolean, required: true },
 });
 
+StockSchema.set("validateBeforeSave", true);
 module.exports = mongoose.model("Stock", StockSchema);
