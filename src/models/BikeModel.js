@@ -20,4 +20,5 @@ const BikeSchema = new Schema({
     seatpost: { type: String, required: true },
 });
 
+BikeSchema.set("validateBeforeSave", true);
 module.exports = mongoose.model("Bike", BikeSchema);
