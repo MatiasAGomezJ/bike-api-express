@@ -1,5 +1,6 @@
 const DB = require("../repository/repository");
 const Store = require("../models/StoreModel");
+const StockService = require("./StockService");
 
 module.exports = {
     listStores: async (filter) => {
@@ -15,6 +16,8 @@ module.exports = {
         return await DB.update(Store, storeId, body);
     },
     deleteStore: async (storeId) => {
-        return await DB.delete(Store, storeId);
+        const removedStore = await DB.delete(Store, storeId);
+        await StockService.deleteStockItems({ storeId: storeId });
+        return removedStore
     },
 };
