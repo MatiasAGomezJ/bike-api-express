@@ -59,6 +59,8 @@ describe("POST tests", () => {
         expect(response3.statusCode).toBe(200);
         expect(response3.type).toMatch("json");
         expect(response3.body.length).toBe(itemCountBefore + 1);
+        expect(response3.body).toMatchObject(expect.arrayContaining([expect.objectContaining(testStores[0])]));
+
     });
 
     test("POST store with invalid body", async () => {
