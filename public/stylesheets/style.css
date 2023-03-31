@@ -1,8 +1,119 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+/* Modificaciones para todos */
+* {
+  /*Universal*/
+  font-family: Rubik;
+  margin: 0;
+}
+
+/* Header */
+header {
+  padding: 25px;
+  background-image: url(./recursos/fondo_oscuro.jpg);
+  color: white;
+  display: flex;
+  background-color: grey;
+}
+
+#imagen_header {
+  flex: 1;
+  text-align: center;
+}
+
+#imagen_header img {
+  filter: brightness(9000%);
+  height: 100%;
+}
+
+#texto_header {
+  padding-top: 25px;
+  padding-bottom: 25px;
+  flex: 4;
+}
+
+/* End header */
+
+/* Nav */
+nav {
+  position: sticky;
+  top: 0;
+  font-size: 15px;
+  background-color: gray;
+  text-align: center;
+}
+
+ul {
+  text-align: center;
+  display: inline;
+  list-style: none;
+}
+
+li {
+  display: inline-block;
+  padding: 30px;
 }
 
 a {
-  color: #00B7FF;
+  text-decoration: none;
 }
+
+a:visited {
+  color: inherit;
+}
+
+a:link {
+  color: inherit;
+}
+
+li:hover {
+  background-color: #333333;
+}
+
+/* End nav */
+
+/* Main */
+main {
+  margin: 50px;
+  color: black;
+}
+
+p {
+  font-size: 20px;
+}
+
+/* End main*/
+
+/*Hasta aqui las modificaciones para todas las paginas*/
+/* Pagina tipos.html*/
+table {
+  margin: 50px;
+}
+
+td {
+  padding: 15px;
+}
+
+td img {
+  width: 200px;
+}
+
+/* End pagina tipos.html */
+
+/* Pagina donde_encontrar.html */
+.maindonde {
+  text-align: center;
+}
+
+.videos {
+  display: inline-block;
+}
+
+.div1 {
+  float: left;
+  margin-right: 10px;
+}
+
+.div2 {
+  float: right;
+}
+
+/* End pagina donde_encontrar.html */
