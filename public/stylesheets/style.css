@@ -72,24 +72,9 @@ li:hover {
   background-color: #333333;
 }
 
-/* End nav */
-/* End main*/
-
-/*Hasta aqui las modificaciones para todas las paginas*/
-/* Pagina tipos.html*/
-table {
-  margin: 50px;
+main {
+  padding: 1rem;
 }
-
-td {
-  padding: 15px;
-}
-
-td img {
-  width: 200px;
-}
-
-/* End pagina tipos.html */
 
 /* Pagina donde_encontrar.html */
 .maindonde {
@@ -118,7 +103,7 @@ td img {
 }
 
 .bike-item {
-  margin: 2rem 4rem 2rem 4rem;
+  margin: 1rem 3rem 1rem 3rem;
   border-radius: 1em;
   /* border: 1px solid black; */
   box-shadow: 0 0 1rem 0.25rem rgb(80, 126, 80);
@@ -127,26 +112,31 @@ td img {
   flex-flow: row wrap;
 }
 
-
-
 .bike-image {
   /* border: 1px solid black; */
   flex: 1;
 }
 
+.bike-image img {
+  width: 8rem;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 1em;
+}
+
 .bike-info {
   /* border: 1px solid black; */
+  margin: 0.5rem;
   flex: 3;
 }
 
 .bike-title {
-  font-size: 14px;
   font-weight: bold;
-  margin: 10px 0;
+  margin: 0.5rem 0;
 }
 
-
 .bike-properties {
+  font-size: 0.6rem;
   display: flex;
   flex-flow: row wrap;
 }
@@ -156,9 +146,6 @@ td img {
   flex: 1 0 50%;
 }
 
-
-
-
 .bike-buttons {
   /* border: 1px solid black; */
   flex: 1;
@@ -166,6 +153,7 @@ td img {
   flex-flow: column nowrap;
   justify-content: center;
   align-items: stretch;
+  font-size: 5rem;
 }
 
 .bike-button {
@@ -198,13 +186,13 @@ td img {
   margin: 0 5px 0 0;
 }
 
-@media screen and (max-width: 1650px) {
+@media screen and (max-width: 1500px) {
   .bike-property {
     flex: 1 0 100%;
   }
 }
 
-@media screen and (max-width: 1100px) {
+@media screen and (max-width: 1450px) {
   .bike-item {
     flex: 1 0 calc(100% - 9rem);
   }
@@ -215,18 +203,33 @@ td img {
   }
 }
 
+/* 
 @media screen and (max-width: 980px) {
+    .bike-item {
+        margin: 1.5rem;
+    }
+
+    .bike-property {
+        flex: 1 0 100%;
+    }
+} */
+
+@media screen and (max-width: 750px) {
   .bike-item {
-    margin: 1.5rem;
+    flex-flow: column wrap;
   }
 
-  .bike-property {
-    flex: 1 0 100%;
+  .bike-image {
+    display: none;
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 500px) {
+  .bike-property {
+    flex: 1 0 100%;
+  }
+
   .bike-item {
-    flex-flow: column wrap;
+    margin: 0;
   }
 }

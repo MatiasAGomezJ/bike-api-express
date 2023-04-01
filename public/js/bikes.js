@@ -14,7 +14,7 @@ async function show() {
         let divImage = document.createElement("div");
         divImage.classList.add("bike-image");
         let img = document.createElement("img");
-        img.src = "nope";
+        img.src = "/resources/bikes/1.png";
         divImage.appendChild(img);
 
         let divInfo = document.createElement("div");
