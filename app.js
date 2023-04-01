@@ -21,4 +21,12 @@ app.use("/api/bike", BikesRouter);
 app.use("/api/store", StoreRouter);
 app.use("/api/stock", StockRouter);
 
+app.get("/", (req, res) => {
+    res.sendFile(__dirname + "/public/index.html");
+});
+app.get("/bikes", (req, res) => {
+    res.sendFile(__dirname + "/public/bikes.html");
+});
+
+
 module.exports = app;
