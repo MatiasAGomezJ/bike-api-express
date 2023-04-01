@@ -1,8 +1,12 @@
 /* Modificaciones para todos */
 * {
   /*Universal*/
-  font-family: Rubik;
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
   margin: 0;
+  padding: 0;
 }
 
 /* Header */
@@ -36,7 +40,7 @@ header {
 nav {
   position: sticky;
   top: 0;
-  font-size: 15px;
+  font-size: 0.8rem;
   background-color: gray;
   text-align: center;
 }
@@ -49,7 +53,7 @@ ul {
 
 li {
   display: inline-block;
-  padding: 30px;
+  padding: 1rem;
 }
 
 a {
@@ -69,17 +73,6 @@ li:hover {
 }
 
 /* End nav */
-
-/* Main */
-main {
-  margin: 50px;
-  color: black;
-}
-
-p {
-  font-size: 20px;
-}
-
 /* End main*/
 
 /*Hasta aqui las modificaciones para todas las paginas*/
@@ -117,3 +110,123 @@ td img {
 }
 
 /* End pagina donde_encontrar.html */
+
+
+.bike-container {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.bike-item {
+  margin: 2rem 4rem 2rem 4rem;
+  border-radius: 1em;
+  /* border: 1px solid black; */
+  box-shadow: 0 0 1rem 0.25rem rgb(80, 126, 80);
+  flex: 1 0 calc(50% - 9rem);
+  display: flex;
+  flex-flow: row wrap;
+}
+
+
+
+.bike-image {
+  /* border: 1px solid black; */
+  flex: 1;
+}
+
+.bike-info {
+  /* border: 1px solid black; */
+  flex: 3;
+}
+
+.bike-title {
+  font-size: 14px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+
+.bike-properties {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.bike-property {
+  margin: 0;
+  flex: 1 0 50%;
+}
+
+
+
+
+.bike-buttons {
+  /* border: 1px solid black; */
+  flex: 1;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.bike-button {
+  text-decoration: none;
+  text-align: center;
+  margin: 0.5rem;
+  border: 0.2rem solid black;
+  border-radius: 1em;
+  color: black;
+  font-weight: bold;
+  background-color: transparent;
+  padding: 0.5em;
+  font-size: 1rem;
+  text-transform: uppercase;
+  transition: transform 0.2s;
+}
+
+.bike-button:hover {
+  border-color: green;
+  color: green;
+  transform: scale(1.02);
+}
+
+.bike-info {
+  font-size: 1rem;
+}
+
+.bike-key {
+  font-weight: bold;
+  margin: 0 5px 0 0;
+}
+
+@media screen and (max-width: 1650px) {
+  .bike-property {
+    flex: 1 0 100%;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .bike-item {
+    flex: 1 0 calc(100% - 9rem);
+  }
+
+  .bike-property {
+    margin: 0;
+    flex: 1 0 50%;
+  }
+}
+
+@media screen and (max-width: 980px) {
+  .bike-item {
+    margin: 1.5rem;
+  }
+
+  .bike-property {
+    flex: 1 0 100%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .bike-item {
+    flex-flow: column wrap;
+  }
+}
