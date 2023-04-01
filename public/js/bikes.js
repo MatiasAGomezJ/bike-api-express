@@ -7,6 +7,7 @@ async function getData() {
         console.error(error);
     }
 }
+
 async function show() {
     container = document.getElementsByClassName("bike-container")[0];
     let data = await getData();

@@ -15,7 +15,8 @@ header {
   background-image: url(./recursos/fondo_oscuro.jpg);
   color: white;
   display: flex;
-  background-color: grey;
+  background-color: rgb(107, 190, 107);
+  align-items: center;
 }
 
 #imagen_header {
@@ -25,13 +26,19 @@ header {
 
 #imagen_header img {
   filter: brightness(9000%);
-  height: 100%;
+  width: 200px;
+}
+
+@media screen and (max-width: 600px) {
+  header {
+    flex-flow: column wrap;
+  }
 }
 
 #texto_header {
   padding-top: 25px;
   padding-bottom: 25px;
-  flex: 4;
+  flex: 2;
 }
 
 /* End header */
@@ -40,9 +47,9 @@ header {
 nav {
   position: sticky;
   top: 0;
-  font-size: 0.8rem;
-  background-color: gray;
-  text-align: center;
+  font-size: 0.9rem;
+  background-color: rgb(52, 173, 52);
+  /* text-align: center; */
 }
 
 ul {
@@ -69,7 +76,7 @@ a:link {
 }
 
 li:hover {
-  background-color: #333333;
+  background-color: green;
 }
 
 main {
@@ -106,7 +113,7 @@ main {
   margin: 1rem 3rem 1rem 3rem;
   border-radius: 1em;
   /* border: 1px solid black; */
-  box-shadow: 0 0 1rem 0.25rem rgb(80, 126, 80);
+  box-shadow: 0 0 1rem 0.25rem rgb(106, 133, 106);
   flex: 1 0 calc(50% - 9rem);
   display: flex;
   flex-flow: row wrap;
@@ -230,6 +237,6 @@ main {
   }
 
   .bike-item {
-    margin: 0;
+    margin: 1rem 0;
   }
 }
