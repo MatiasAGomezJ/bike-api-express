@@ -26,6 +26,8 @@ app.get("/", (req, res) => {
 });
 app.get("/bikes", (req, res) => {
     res.sendFile(__dirname + "/public/bikes.html");
+});app.get("/bikes/update", (req, res) => {
+    res.sendFile(__dirname + "/public/bikes/update.html");
 });
 
 

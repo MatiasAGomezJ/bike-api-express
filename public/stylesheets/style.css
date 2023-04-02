@@ -12,7 +12,6 @@ body {
 /* Header */
 header {
   padding: 25px;
-  background-image: url(./recursos/fondo_oscuro.jpg);
   color: white;
   display: flex;
   background-color: rgb(107, 190, 107);
