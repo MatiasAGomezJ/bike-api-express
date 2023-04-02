@@ -1,3 +1,21 @@
+const BIKE_FORM_FIELDS = {
+    brakes: "",
+    category: "",
+    clearance: "",
+    drivetrain: "",
+    fork: "",
+    frame: "",
+    front_travel: "",
+    groupset: "",
+    msrp: 0,
+    seatpost: "",
+    spec_level: "",
+    suspension: "",
+    weight: "",
+    wheel_size: "",
+    wheels: "",
+} 
+
 async function getData() {
     try {
         let response = await fetch("http://localhost/api/bike");
@@ -7,11 +25,7 @@ async function getData() {
         console.error(error);
     }
 }
-async function getBike() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const _idValue = urlParams.get("_id");
-
-    let _id = _idValue;
+async function getBike(_id) {
     try {
         let response = await fetch(`http://localhost/api/bike/${_id}`);
         let data = await response.json();
@@ -20,10 +34,38 @@ async function getBike() {
         console.error(error);
     }
 }
+/*
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
 
+  const data = new FormData(form);
+
+  fetch(form.getAttribute('action'), {
+    method: form.getAttribute('method'),
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(Object.fromEntries(data.entries()))
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error(`POST request failed with status ${response.status}`);
+    }
+    // Redirect to another page
+    window.location.href = 'https://example.com/another-page';
+  })
+  .catch(error => {
+    console.error(error);
+  });
+});
+*/
 form = document.getElementsByClassName("bike-form-container")[0];
 async function showForm() {
-    let data = await getBike();
+    const urlParams = new URLSearchParams(window.location.search);
+    const _id = urlParams.get("_id");
+    isUpdate = _id;
+    const data = isUpdate ? await getBike(_id) : BIKE_FORM_FIELDS;
+
     updateForm = document.createElement("form");
     updateForm.classList.add("bike-form");
 
@@ -40,7 +82,7 @@ async function showForm() {
             label.setAttribute("for", key);
             label.innerHTML = `${key}: `;
             let input = document.createElement("input");
-            input.setAttribute("type", "text");
+            input.setAttribute("type", typeof e == "number" ? "number" : "text");
             input.setAttribute("name", key);
             input.setAttribute("id", key);
             input.setAttribute("value", e);
@@ -48,13 +90,16 @@ async function showForm() {
             updateForm.appendChild(label);
         }
     }
+    let br = document.createElement("br");
+    updateForm.appendChild(br);
     let button = document.createElement("button");
     button.setAttribute("type", "submit");
-    button.innerHTML = "Actualizar";
+    button.innerHTML = isUpdate ? "Actualizar" : "Crear";
     updateForm.appendChild(button);
     form.appendChild(updateForm);
     updateForm.addEventListener("submit", (e) => {
-        updateBike();
+        e.preventDefault();
+        isUpdate ? updateBike() : createBike();
     });
 }
 /*
@@ -95,7 +140,7 @@ _id: "63c89dc257c2b831f18e68df"
 //     __v: "number",
 // };
 
-async function updateBike() {
+function createBike() {
     const formData = new FormData(
         document.getElementsByClassName("bike-form")[0]
     );
@@ -103,17 +148,42 @@ async function updateBike() {
     for (const [key, value] of formData.entries()) {
         data[key] = value;
     }
-    try {
-        let response = await fetch(`http://localhost/api/bike/${data["_id"]}`, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(data),
-        });
-    } catch (error) {
-        console.error(error);
+    fetch("http://localhost/api/bike", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+    }).then((response) => {
+        if (!response.ok)
+            throw new Error(
+                `POST request failed with status ${response.status}`
+            );
+        window.location.href = "/bikes";
+    });
+}
+
+function updateBike() {
+    const formData = new FormData(
+        document.getElementsByClassName("bike-form")[0]
+    );
+    const data = {};
+    for (const [key, value] of formData.entries()) {
+        data[key] = value;
     }
+    fetch(`http://localhost/api/bike/${data["_id"]}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+    }).then((response) => {
+        if (!response.ok)
+            throw new Error(
+                `PUT request failed with status ${response.status}`
+            );
+        window.location.href = "/bikes";
+    });
 }
 
 container = document.getElementsByClassName("bike-container")[0];
@@ -171,5 +241,21 @@ async function show() {
     });
 }
 
+deleteElement = document.getElementsByClassName("bike-delete")[0];
+async function deleteBike() {
+    let data = await getData();
+    let id = new URLSearchParams(window.location.search).get("_id");
+    fetch(`http://localhost/api/bike/${id}`, {
+        method: "DELETE",
+    }).then((response) => {
+        if (!response.ok)
+            throw new Error(
+                `DELETE request failed with status ${response.status}`
+            );
+        window.location.href = "/bikes";
+    });
+}
+
 if (container) show();
 if (form) showForm();
+if (deleteElement) deleteBike();

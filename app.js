@@ -26,9 +26,17 @@ app.get("/", (req, res) => {
 });
 app.get("/bikes", (req, res) => {
     res.sendFile(__dirname + "/public/bikes.html");
-});app.get("/bikes/update", (req, res) => {
+});
+app.get("/bikes/update", (req, res) => {
     res.sendFile(__dirname + "/public/bikes/update.html");
 });
+app.get("/bikes/create", (req, res) => {
+    res.sendFile(__dirname + "/public/bikes/create.html");
+});
+app.get("/bikes/delete", (req, res) => {
+    res.sendFile(__dirname + "/public/bikes/delete.html");
+});
+
 
 
 module.exports = app;

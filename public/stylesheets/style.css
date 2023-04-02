@@ -79,29 +79,34 @@ li:hover {
 }
 
 main {
-  padding: 1rem;
+  padding: 4rem;
 }
 
-/* Pagina donde_encontrar.html */
-.maindonde {
-  text-align: center;
+.title-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.videos {
-  display: inline-block;
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 0;
 }
 
-.div1 {
-  float: left;
-  margin-right: 10px;
+@media screen and (max-width: 650px) {
+  main {
+    padding: 1rem;
+  }
 }
-
-.div2 {
-  float: right;
+@media screen and (max-width: 550px) {
+  .title-container {
+    flex-flow: column wrap;
+  }
+  .title {
+    font-size: 1.8rem;
+  }
 }
-
-/* End pagina donde_encontrar.html */
-
 
 .bike-container {
   display: flex;
@@ -109,7 +114,7 @@ main {
 }
 
 .bike-item {
-  margin: 1rem 3rem 1rem 3rem;
+  margin: 2rem;
   border-radius: 1em;
   /* border: 1px solid black; */
   box-shadow: 0 0 1rem 0.25rem rgb(106, 133, 106);
@@ -220,9 +225,14 @@ main {
     }
 } */
 
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 800px) {
+  .title {
+    margin: 0;
+  }
+
   .bike-item {
     flex-flow: column wrap;
+    margin: 1rem 0;
   }
 
   .bike-image {
@@ -234,8 +244,8 @@ main {
   .bike-property {
     flex: 1 0 100%;
   }
+}
 
-  .bike-item {
-    margin: 1rem 0;
-  }
+label {
+  display: block;
 }
