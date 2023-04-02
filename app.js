@@ -22,10 +22,10 @@ app.use("/api/store", StoreRouter);
 app.use("/api/stock", StockRouter);
 
 app.get("/", (req, res) => {
-    res.sendFile(__dirname + "/public/index.html");
+    res.sendFile("/");
 });
 app.get("/bikes", (req, res) => {
-    res.sendFile(__dirname + "/public/bikes.html");
+    res.sendFile("/bikes");
 });
 app.get("/bikes/update", (req, res) => {
     res.sendFile(__dirname + "/public/bikes/update.html");
