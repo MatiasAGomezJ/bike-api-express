@@ -108,12 +108,12 @@ main {
   }
 }
 
-.bike-container {
+.entities-container {
   display: flex;
   flex-flow: row wrap;
 }
 
-.bike-item {
+.entity-item {
   margin: 2rem;
   border-radius: 1em;
   /* border: 1px solid black; */
@@ -123,41 +123,41 @@ main {
   flex-flow: row wrap;
 }
 
-.bike-image {
+.entity-image {
   /* border: 1px solid black; */
   flex: 1;
 }
 
-.bike-image img {
+.entity-image img {
   width: 8rem;
   height: 100%;
   object-fit: contain;
   border-radius: 1em;
 }
 
-.bike-info {
+.entity-info {
   /* border: 1px solid black; */
   margin: 0.5rem;
   flex: 3;
 }
 
-.bike-title {
+.entity-title {
   font-weight: bold;
   margin: 0.5rem 0;
 }
 
-.bike-properties {
+.entity-properties {
   font-size: 0.6rem;
   display: flex;
   flex-flow: row wrap;
 }
 
-.bike-property {
+.entity-property {
   margin: 0;
   flex: 1 0 50%;
 }
 
-.bike-buttons {
+.entity-buttons {
   /* border: 1px solid black; */
   flex: 1;
   display: flex;
@@ -167,7 +167,7 @@ main {
   font-size: 5rem;
 }
 
-.bike-button {
+.entity-button {
   text-decoration: none;
   text-align: center;
   margin: 0.5rem;
@@ -182,33 +182,33 @@ main {
   transition: transform 0.2s;
 }
 
-.bike-button:hover {
+.entity-button:hover {
   border-color: green;
   color: green;
   transform: scale(1.02);
 }
 
-.bike-info {
+.entity-info {
   font-size: 1rem;
 }
 
-.bike-key {
+.entity-key {
   font-weight: bold;
   margin: 0 5px 0 0;
 }
 
 @media screen and (max-width: 1500px) {
-  .bike-property {
+  .entity-property {
     flex: 1 0 100%;
   }
 }
 
 @media screen and (max-width: 1450px) {
-  .bike-item {
+  .entity-item {
     flex: 1 0 calc(100% - 9rem);
   }
 
-  .bike-property {
+  .entity-property {
     margin: 0;
     flex: 1 0 50%;
   }
@@ -216,11 +216,11 @@ main {
 
 /* 
 @media screen and (max-width: 980px) {
-    .bike-item {
+    .entity-item {
         margin: 1.5rem;
     }
 
-    .bike-property {
+    .entity-property {
         flex: 1 0 100%;
     }
 } */
@@ -230,18 +230,18 @@ main {
     margin: 0;
   }
 
-  .bike-item {
+  .entity-item {
     flex-flow: column wrap;
     margin: 1rem 0;
   }
 
-  .bike-image {
+  .entity-image {
     display: none;
   }
 }
 
 @media screen and (max-width: 500px) {
-  .bike-property {
+  .entity-property {
     flex: 1 0 100%;
   }
 }
