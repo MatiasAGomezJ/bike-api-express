@@ -1,4 +1,3 @@
-const StockService = require("../service/StockService");
 const StoreService = require("../service/StoreService");
 
 module.exports = {
