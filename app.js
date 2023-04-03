@@ -15,9 +15,28 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(express.static("public"));
 
 app.use("/api/bike", BikesRouter);
 app.use("/api/store", StoreRouter);
 app.use("/api/stock", StockRouter);
+
+app.get("/", (req, res) => {
+    res.sendFile("/");
+});
+app.get("/bikes", (req, res) => {
+    res.sendFile("/bikes");
+});
+app.get("/bikes/update", (req, res) => {
+    res.sendFile(__dirname + "/public/bikes/update.html");
+});
+app.get("/bikes/create", (req, res) => {
+    res.sendFile(__dirname + "/public/bikes/create.html");
+});
+app.get("/bikes/delete", (req, res) => {
+    res.sendFile(__dirname + "/public/bikes/delete.html");
+});
+
+
 
 module.exports = app;

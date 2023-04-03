@@ -20,7 +20,8 @@ module.exports = {
         const bikeId = req.params.id;
         const body = req.body;
         const updatedBike = await BikeService.updateBike(bikeId, body);
-        updatedBike ? res.status(200).send({ bike: updatedBike }) : res.status(400).send({ msg: "No se ha actualizado la bicicleta" });
+        const bike = await BikeService.getBikeById(bikeId);
+        updatedBike ? res.status(200).send({ bike: bike }) : res.status(400).send({ msg: "No se ha actualizado la bicicleta" });
     },
     deleteBike: async (req, res) => {
         const bikeId = req.params.id;
