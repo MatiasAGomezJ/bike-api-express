@@ -50,4 +50,18 @@ app.get("/store/delete", (req, res) => {
     res.sendFile(__dirname + "/public/store/delete.html");
 });
 
+app.get("/stock", (req, res) => {
+    res.sendFile("/stocks");
+});
+app.get("/stock/update", (req, res) => {
+    res.sendFile(__dirname + "/public/stock/update.html");
+});
+app.get("/stock/create", (req, res) => {
+    res.sendFile(__dirname + "/public/stock/create.html");
+});
+app.get("/stock/delete", (req, res) => {
+    res.sendFile(__dirname + "/public/stock/delete.html");
+});
+
+
 module.exports = app;

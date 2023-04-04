@@ -51,12 +51,14 @@ function showHeader() {
     const homeLink = createLinkWithHrefAndText("/", "Home");
     const bikesLink = createLinkWithHrefAndText("/bike", "Bikes");
     const storesLink = createLinkWithHrefAndText("/store", "Stores");
+    const stocksLink = createLinkWithHrefAndText("/stock", "Stocks");
 
     const homeLi = createLiWithElement(homeLink);
     const bikesLi = createLiWithElement(bikesLink);
     const storesLi = createLiWithElement(storesLink);
+    const stocksLi = createLiWithElement(stocksLink);
 
-    ul.append(homeLi, bikesLi, storesLi);
+    ul.append(homeLi, bikesLi, storesLi, stocksLi);
     nav.appendChild(ul);
 
     document.body.prepend(header, nav);
