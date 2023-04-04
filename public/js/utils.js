@@ -116,7 +116,6 @@ function createInfo(item) {
     for (const key in item) {
         // If value is null, show "No encontrado", else, if value has a name property, show it's value, else show value
         let value = item[key].value?.name ?? item[key].value ?? "No encontrado";
-
         if (key === "_id") continue;
         if (key === "__v") continue;
         if (key === "name") {
@@ -131,7 +130,6 @@ function createInfo(item) {
             divProperties.appendChild(p);
         }
     }
-
     info.appendChild(divProperties);
     return info;
 }
@@ -164,10 +162,13 @@ function createLabelElement(key, value) {
 
 function createInputElement(key, value) {
     const input = createElement("input");
-    input.type = typeof value.value === "number" ? "number" : "text";
+    const newValue = value.value;
+    const type = typeof value.value === "number" ? "number" : "text";
+    input.type = type;
     input.name = key;
     input.id = key;
-    input.value = value.value;
+    // The same -> newValue ? (newValue["_id"] ? newValue["_id"] : newValue) : newValue
+    input.value = newValue?.["_id"] ?? newValue;
     input.required = true;
     return input;
 }
@@ -233,8 +234,7 @@ export const mapToFormFields = (data, skeleton) => {
         if (key in skeleton) {
             formFields[key] = {
                 label: skeleton[key]["label"],
-                // The same -> value ? (value["_id"] ? value["_id"] : value) : value
-                value: value?.["_id"] ?? value,
+                value: value,
             };
         } else {
             formFields[key] = { label: key, value: value };
