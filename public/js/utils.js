@@ -63,11 +63,11 @@ function createButtons(entity, item) {
     buttons.classList.add("entity-buttons");
     const modifyButton = createButton(
         "Modificar",
-        `${SERVER_URL}/${entity}/update?_id=${item._id}`
+        `${SERVER_URL}/${entity}/update?_id=${item._id.value}`
     );
     const deleteButton = createButton(
         "Eliminar",
-        `${SERVER_URL}/${entity}/delete?_id=${item._id}`
+        `${SERVER_URL}/${entity}/delete?_id=${item._id.value}`
     );
     buttons.appendChild(modifyButton);
     buttons.appendChild(deleteButton);
@@ -86,11 +86,12 @@ function createEntityItem(entity, item) {
     const entityItem = document.createElement("div");
     entityItem.classList.add("entity-item");
 
-    const divImage = createDivImage(entity);
+    const divImage = entity === ENTITIES.STOCK ? null : createDivImage(entity);
     const info = createInfo(item);
     const buttons = createButtons(entity, item);
 
-    entityItem.appendChild(divImage);
+    // If entity is stock, don't show image
+    entity === ENTITIES.STOCK || entityItem.appendChild(divImage);
     entityItem.appendChild(info);
     entityItem.appendChild(buttons);
 
@@ -102,7 +103,6 @@ function createDivImage(entity) {
     divImage.classList.add("entity-image");
     const img = document.createElement("img");
     const randomNum = Math.floor(Math.random() * 3) + 1;
-    console.log(randomNum);
     img.src = `/resources/${entity}/${randomNum}.png`;
     divImage.appendChild(img);
     return divImage;
@@ -113,9 +113,10 @@ function createInfo(item) {
     info.classList.add("entity-info");
     const divProperties = document.createElement("div");
     divProperties.classList.add("entity-properties");
-
     for (const key in item) {
-        const value = item[key];
+        // If value is null, show "No encontrado", else, if value has a name property, show it's value, else show value
+        let value = item[key].value?.name ?? item[key].value ?? "No encontrado";
+
         if (key === "_id") continue;
         if (key === "__v") continue;
         if (key === "name") {
@@ -126,7 +127,7 @@ function createInfo(item) {
         } else {
             const p = document.createElement("p");
             p.classList.add("entity-property");
-            p.innerHTML = `<span class="entity-key">${key}:</span>${value}`;
+            p.innerHTML = `<span class="entity-key">${item[key].label}:</span>${value}`;
             divProperties.appendChild(p);
         }
     }
@@ -150,23 +151,23 @@ function createInputHiddenElement(key, value) {
     const input = createElement("input");
     input.type = "hidden";
     input.name = key;
-    input.value = value;
+    input.value = value.value;
     return input;
 }
 
-function createLabelElement(key) {
+function createLabelElement(key, value) {
     const label = createElement("label");
     label.htmlFor = key;
-    label.textContent = `${key}: `;
+    label.textContent = `${value.label}: `;
     return label;
 }
 
 function createInputElement(key, value) {
     const input = createElement("input");
-    input.type = typeof value === "number" ? "number" : "text";
+    input.type = typeof value.value === "number" ? "number" : "text";
     input.name = key;
     input.id = key;
-    input.value = value;
+    input.value = value.value;
     return input;
 }
 
@@ -207,7 +208,7 @@ export async function showForm(form, entity, data) {
             const input = createInputHiddenElement(key, value);
             updateForm.appendChild(input);
         } else {
-            const label = createLabelElement(key);
+            const label = createLabelElement(key, value);
             const input = createInputElement(key, value);
             label.appendChild(input);
             updateForm.appendChild(label);
