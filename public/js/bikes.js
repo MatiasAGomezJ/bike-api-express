@@ -1,6 +1,7 @@
 import * as utils from "./utils.js";
 
 const BIKE_FORM_FIELDS = {
+    name: "",
     brakes: "",
     category: "",
     clearance: "",

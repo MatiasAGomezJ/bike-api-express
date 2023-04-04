@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 
 const BikeSchema = new Schema({
     msrp: { type: Number, required: true },
+    name: { type: String, required: true },
     spec_level: { type: String, required: true },
     category: { type: String, required: true },
     weight: { type: String, required: true },
