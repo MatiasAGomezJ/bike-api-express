@@ -168,6 +168,7 @@ function createInputElement(key, value) {
     input.name = key;
     input.id = key;
     input.value = value.value;
+    input.required = true;
     return input;
 }
 
