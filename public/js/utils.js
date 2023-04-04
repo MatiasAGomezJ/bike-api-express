@@ -114,6 +114,8 @@ function createInfo(item) {
 
     for (const key in item) {
         const value = item[key];
+        if (key === "_id") continue;
+        if (key === "__v") continue;
         if (key === "name") {
             const title = document.createElement("p");
             title.innerHTML = value;
