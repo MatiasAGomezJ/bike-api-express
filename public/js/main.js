@@ -69,7 +69,7 @@ function showHeader() {
     ul.appendChild(homeLink);
 
     const bikesLink = document.createElement("a");
-    bikesLink.setAttribute("href", "/bikes");
+    bikesLink.setAttribute("href", "/bike");
 
     const bikesLi = document.createElement("li");
     bikesLi.innerHTML = "Bikes";

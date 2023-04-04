@@ -24,17 +24,17 @@ app.use("/api/stock", StockRouter);
 app.get("/", (req, res) => {
     res.sendFile("/");
 });
-app.get("/bikes", (req, res) => {
+app.get("/bike", (req, res) => {
     res.sendFile("/bikes");
 });
-app.get("/bikes/update", (req, res) => {
-    res.sendFile(__dirname + "/public/bikes/update.html");
+app.get("/bike/update", (req, res) => {
+    res.sendFile(__dirname + "/public/bike/update.html");
 });
-app.get("/bikes/create", (req, res) => {
-    res.sendFile(__dirname + "/public/bikes/create.html");
+app.get("/bike/create", (req, res) => {
+    res.sendFile(__dirname + "/public/bike/create.html");
 });
-app.get("/bikes/delete", (req, res) => {
-    res.sendFile(__dirname + "/public/bikes/delete.html");
+app.get("/bike/delete", (req, res) => {
+    res.sendFile(__dirname + "/public/bike/delete.html");
 });
 
 

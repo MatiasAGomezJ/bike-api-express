@@ -1,3 +1,6 @@
+const SERVER_URL = "http://localhost";
+const API_URL = `${SERVER_URL}/api`;
+
 export const ENTITIES = {
     BIKE: "bike",
     STORE: "store",
@@ -5,7 +8,7 @@ export const ENTITIES = {
 };
 
 async function apiRequest(method, entity, data, _id = null) {
-    const url = `http://localhost/api/${entity}${_id ? `/${_id}` : ""}`;
+    const url = `${API_URL}/${entity}${_id ? `/${_id}` : ""}`;
     const options = {
         method,
         headers: { "Content-Type": "application/json" },
@@ -39,7 +42,7 @@ async function createBike() {
         data[key] = value;
     }
     await apiRequest("POST", "bike", data);
-    window.location.href = "/bikes";
+    window.location.href = "/bike";
 }
 
 async function updateBike() {
@@ -52,19 +55,19 @@ async function updateBike() {
     }
     const _id = data["_id"];
     await apiRequest("PUT", "bike", data, _id);
-    window.location.href = "/bikes";
+    window.location.href = "/bike";
 }
 
-function createButtons(item) {
+function createButtons(entity, item) {
     const buttons = document.createElement("div");
     buttons.classList.add("entity-buttons");
     const modifyButton = createButton(
         "Modificar",
-        `http://localhost/bikes/update?_id=${item._id}`
+        `${SERVER_URL}/${entity}/update?_id=${item._id}`
     );
     const deleteButton = createButton(
         "Eliminar",
-        `http://localhost/bikes/delete?_id=${item._id}`
+        `${SERVER_URL}/${entity}/delete?_id=${item._id}`
     );
     buttons.appendChild(modifyButton);
     buttons.appendChild(deleteButton);
@@ -79,13 +82,13 @@ function createButton(label, url) {
     return button;
 }
 
-function createEntityItem(item) {
+function createEntityItem(entity, item) {
     const entityItem = document.createElement("div");
     entityItem.classList.add("entity-item");
 
     const divImage = createDivImage();
     const info = createInfo(item);
-    const buttons = createButtons(item);
+    const buttons = createButtons(entity, item);
 
     entityItem.appendChild(divImage);
     entityItem.appendChild(info);
@@ -182,12 +185,12 @@ export async function getOne(entity, _id) {
 
 export async function deleteOne(entity, _id) {
     await apiRequest("DELETE", entity, {}, _id);
-    window.location.href = "/bikes";
+    window.location.href = "/bike";
 }
 
-export async function show(parent, data) {
+export async function show(parent, entity, data) {
     for (const item of data) {
-        const entityItem = createEntityItem(item);
+        const entityItem = createEntityItem(entity, item);
         parent.appendChild(entityItem);
     }
 }

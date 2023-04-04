@@ -22,7 +22,7 @@ const init = async () => {
     const entitiesContainer = document.querySelector(".entities-container");
     if (entitiesContainer) {
         const bikes = await getBikes();
-        utils.show(entitiesContainer, bikes);
+        utils.show(entitiesContainer, utils.ENTITIES.BIKE, bikes);
     }
 
     const form = document.querySelector(".entity-form-container");
