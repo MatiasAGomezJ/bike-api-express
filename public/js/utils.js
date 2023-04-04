@@ -114,7 +114,7 @@ function createInfo(item) {
 
     for (const key in item) {
         const value = item[key];
-        if (key === "_id") {
+        if (key === "name") {
             const title = document.createElement("p");
             title.innerHTML = value;
             title.classList.add("entity-title");
