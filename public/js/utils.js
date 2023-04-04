@@ -232,7 +232,8 @@ export const mapToFormFields = (data, skeleton) => {
         if (key in skeleton) {
             formFields[key] = {
                 label: skeleton[key]["label"],
-                value: value,
+                // The same -> value ? (value["_id"] ? value["_id"] : value) : value
+                value: value?.["_id"] ?? value,
             };
         } else {
             formFields[key] = { label: key, value: value };

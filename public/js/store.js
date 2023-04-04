@@ -18,33 +18,13 @@ const deleteStore = async (id) => {
     await utils.deleteOne(utils.ENTITIES.STORE, id);
 };
 
-const mapToFormFields = (data) => {
-    const formFields = {};
-    for (const [key, value] of Object.entries(data)) {
-        if (key in STORE_FORM_FIELDS) {
-            formFields[key] = {
-                label: STORE_FORM_FIELDS[key]["label"],
-                value: value,
-            };
-        } else {
-            formFields[key] = { label: key, value: value };
-        }
-    }
-    return formFields;
-};
-
-const mapToAllFormFields = (data) => {
-    const formFields = [];
-    for (const item of data) {
-        formFields.push(mapToFormFields(item));
-    }
-    return formFields;
-};
-
 const init = async () => {
     const entitiesContainer = document.querySelector(".entities-container");
     if (entitiesContainer) {
-        const data = mapToAllFormFields(await getStores());
+        const data = utils.mapToAllFormFields(
+            await getStores(),
+            STORE_FORM_FIELDS
+        );
         utils.show(entitiesContainer, utils.ENTITIES.STORE, data);
     }
 
@@ -53,7 +33,7 @@ const init = async () => {
         const urlParams = new URLSearchParams(window.location.search);
         const id = urlParams.get("_id");
         const data = id
-            ? mapToFormFields(await getStore(id))
+            ? utils.mapToFormFields(await getStore(id), STORE_FORM_FIELDS)
             : STORE_FORM_FIELDS;
         utils.showForm(form, utils.ENTITIES.STORE, data);
     }
