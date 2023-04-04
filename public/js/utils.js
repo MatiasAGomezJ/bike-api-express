@@ -33,7 +33,7 @@ async function apiRequest(method, entity, data, _id = null) {
     }
 }
 
-async function createBike() {
+async function create(entity) {
     const formData = new FormData(
         document.getElementsByClassName("entity-form")[0]
     );
@@ -41,11 +41,11 @@ async function createBike() {
     for (const [key, value] of formData.entries()) {
         data[key] = value;
     }
-    await apiRequest("POST", "bike", data);
-    window.location.href = "/bike";
+    await apiRequest("POST", entity, data);
+    window.location.href = `/${entity}`;
 }
 
-async function updateBike() {
+async function update(entity) {
     const formData = new FormData(
         document.getElementsByClassName("entity-form")[0]
     );
@@ -54,8 +54,8 @@ async function updateBike() {
         data[key] = value;
     }
     const _id = data["_id"];
-    await apiRequest("PUT", "bike", data, _id);
-    window.location.href = "/bike";
+    await apiRequest("PUT", entity, data, _id);
+    window.location.href = `/${entity}`;
 }
 
 function createButtons(entity, item) {
@@ -185,7 +185,7 @@ export async function getOne(entity, _id) {
 
 export async function deleteOne(entity, _id) {
     await apiRequest("DELETE", entity, {}, _id);
-    window.location.href = "/bike";
+    window.location.href = `/${entity}`;
 }
 
 export async function show(parent, entity, data) {
@@ -195,7 +195,7 @@ export async function show(parent, entity, data) {
     }
 }
 
-export async function showForm(form, data) {
+export async function showForm(form, entity, data) {
     const updateForm = createFormElement("form", "entity-form");
 
     Object.entries(data).forEach(([key, value]) => {
@@ -217,6 +217,6 @@ export async function showForm(form, data) {
     form.appendChild(updateForm);
     updateForm.addEventListener("submit", (e) => {
         e.preventDefault();
-        data["_id"] ? updateBike() : createBike();
+        data["_id"] ? update(entity) : create(entity);
     });
 }

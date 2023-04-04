@@ -30,7 +30,7 @@ const init = async () => {
         const urlParams = new URLSearchParams(window.location.search);
         const id = urlParams.get("_id");
         const data = id ? await getBike(id) : BIKE_FORM_FIELDS;
-        utils.showForm(form, data);
+        utils.showForm(form, utils.ENTITIES.BIKE, data);
     }
 
     const deleteElement = document.querySelector(".entity-delete");
