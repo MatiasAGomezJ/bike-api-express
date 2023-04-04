@@ -86,7 +86,7 @@ function createEntityItem(entity, item) {
     const entityItem = document.createElement("div");
     entityItem.classList.add("entity-item");
 
-    const divImage = createDivImage();
+    const divImage = createDivImage(entity);
     const info = createInfo(item);
     const buttons = createButtons(entity, item);
 
@@ -97,11 +97,13 @@ function createEntityItem(entity, item) {
     return entityItem;
 }
 
-function createDivImage() {
+function createDivImage(entity) {
     const divImage = document.createElement("div");
     divImage.classList.add("entity-image");
     const img = document.createElement("img");
-    img.src = "/resources/bikes/1.png";
+    const randomNum = Math.floor(Math.random() * 3) + 1;
+    console.log(randomNum);
+    img.src = `/resources/${entity}/${randomNum}.png`;
     divImage.appendChild(img);
     return divImage;
 }

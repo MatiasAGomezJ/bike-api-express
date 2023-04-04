@@ -5,13 +5,22 @@ const Store = require("../models/StoreModel");
 
 async function myPopulate(items) {
     if (items === null) return null;
-    if (!Array.isArray(items)) items = [items];    
-    
+    if (!Array.isArray(items)) items = [items];
+
     for (let i = 0; i < items.length; i++) {
         const item = items[i];
         item.bikeId = await DB.getById(Bike, item.bikeId);
         item.storeId = await DB.getById(Store, item.storeId);
     }
+
+    // const newItems = items.map(async (item) => {
+    //     return {
+    //         ...item._doc,
+    //         bikeId: await DB.getById(Bike, item.bikeId),
+    //         storeId: await DB.getById(Store, item.storeId)
+    //     };
+    // });
+
     return items;
 }
 
@@ -33,5 +42,5 @@ module.exports = {
     },
     deleteStockItems: async (filter) => {
         return await myPopulate(await DB.deleteMany(Stock, filter));
-    }
+    },
 };

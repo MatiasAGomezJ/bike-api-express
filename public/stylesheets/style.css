@@ -129,7 +129,7 @@ main {
 }
 
 .entity-image img {
-  width: 8rem;
+  width: 6rem;
   height: 100%;
   object-fit: contain;
   border-radius: 1em;
