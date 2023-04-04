@@ -225,3 +225,26 @@ export async function showForm(form, entity, data) {
         data["_id"] ? update(entity) : create(entity);
     });
 }
+
+export const mapToFormFields = (data, skeleton) => {
+    const formFields = {};
+    for (const [key, value] of Object.entries(data)) {
+        if (key in skeleton) {
+            formFields[key] = {
+                label: skeleton[key]["label"],
+                value: value,
+            };
+        } else {
+            formFields[key] = { label: key, value: value };
+        }
+    }
+    return formFields;
+};
+
+export const mapToAllFormFields = (data, skeleton) => {
+    const formFields = [];
+    for (const item of data) {
+        formFields.push(mapToFormFields(item, skeleton));
+    }
+    return formFields;
+};

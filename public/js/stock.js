@@ -1,8 +1,8 @@
 import * as utils from "./utils.js";
 
 const STOCK_FORM_FIELDS = {
-    storeId: "",
-    bikeId: "",
+    storeId: "storeName",
+    bikeId: "bikeName",
     rentable: "",
 };
 
