@@ -24,7 +24,7 @@ module.exports = {
     },
     deleteStockItem: async (req, res) => {
         const stockId = req.params.id;
-        const deletedStock = await StockService.rentStockItem(stockId);
+        const deletedStock = await StockService.deleteStockItem(stockId);
         deletedStock ? res.status(200).send({ store: deletedStock }) : res.status(400).send({ msg: "No se ha borrado el item" });
     },
 };
