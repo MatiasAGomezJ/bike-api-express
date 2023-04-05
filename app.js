@@ -8,6 +8,9 @@ var StockRouter = require("./src/routes/StockRouter");
 
 var app = express();
 
+const dotenv = require("dotenv");
+dotenv.config();
+
 var db = require("./src/repository/initDB");
 db.connect();
 
